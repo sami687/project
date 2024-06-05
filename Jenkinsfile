@@ -24,9 +24,8 @@ pipeline {
             }
         }
         
-     stage('Deploy') {
-            steps {
-                     sh 'sudo docker run -itd --name My-first-containe2211 -p 8083:80 samiksha055/bankingandfinance:v1'
+     stage('deploy on ansible') {
+            ansiblePlaybook become: true, credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts' , playbook: 'playbook.yml' vaultTempPath: "
 
                 }
             }
